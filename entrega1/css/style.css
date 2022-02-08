@@ -1,0 +1,22 @@
+
+/* Color y margin de los titulos */
+.card{
+    background-color: rgb(245, 245, 35);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Centrado de los separadores */
+.centrado{
+    text-align: center;
+}
+
+/* Texto del footer */
+.texto-claro{
+    color: rgb(255, 255, 255);
+}
+
+/*Margin para el footer */
+footer{
+    margin-top: 25%;
+}
