@@ -12,16 +12,16 @@ class Producto{
 //creacion de la clase creacion de producto
 class Creacion{
      crearProducto(producto){
-        const lista = document.getElementById("listado");
+        const lista = document.getElementById("carrito");
         const div = document.createElement("div");
         div.innerHTML = `<div class="col-md-4">
         Nombre: ${producto.nombre}
         Descripcion: ${producto.descrip}
         Precio: ${producto.precio}
         Stock: ${producto.stock=1}
-        <input type="submit" value="Agregar a carrito" >
-        </div>`;
+        </div><br>`;
         lista.appendChild(div);
+        console.log(crearProducto);
         
      }
 
@@ -39,35 +39,7 @@ document.getElementById("formulario")
         creacion.crearProducto(producto);
         //agregarStock();
         console.log(producto);
+        event.preventDefault();
     })
 
 
-// clase para agregar objetos al carrito
-class Carrito{
-    constructor(producto) {
- 
-    }
-    agregarCarrito(producto) {
-        const carrito = document.getElementById("carrito");
-        const div = document.createElement("div");
-        div.innerHTML = `<div class="col-md-4">
-        Nombre: ${producto.nombre}
-        Descripcion: ${producto.descrip}
-        Precio: ${producto.precio}
-        Stock: ${producto.stock}</div>`;
-        carrito.appendChild(div);
-       
-    }
-}
-
-document.getElementById("carrito")
-    .addEventListener("submit",function (){
-        const nombre = document.getElementById("nombre").value;
-        const descrip = document.getElementById("descrip").value;
-        const precio = document.getElementById("precio").value;
-        const producto = new Producto(nombre,descrip,precio);
-        const carrito = new Carrito();
-        carrito.agregarCarrito(producto);
-
-        console.log(carrito);
-    })
