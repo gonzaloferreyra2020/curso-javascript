@@ -21,15 +21,25 @@
     <!-- Navbar-->
     <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">
-            Creacion de productos
+            Venta de productos
         </a>
     </nav>
 
    <!--Principal-->
+
     <div class="container">
+
+        <!---->
+        <div class="row pt-3" id="container-productos">
+
+        </div>
+        
+        
+
+
         <div id="crearProducto" class="row pt-3">
              <!-- Primer columna-->
-            <div class="col-md-4">
+            <!--<div class="col-md-4">
                 <div class="card centrado">
                     <h3>Ingresar producto:</h3>
                 </div>
@@ -49,24 +59,64 @@
                     <input type="submit" value="Guardar" >
                 </form>
                 
-            </div>
-             <!-- Segunda columna-->
-            <div class="col-md-4" id="carrito">
-                <div class="card centrado">
-                    <h3>Carrito:</h3>
-                </div>
-                
+            </div>-->
+
+            <div class="col-md-4 card centrado" >
+                <h3>Carrito:</h3>
+                <table>
+                    
+                        <td>ID</td>
+                        <td>Nombre</td>
+                        <td>Precio</td>
+                        <td>Cantidad</td>
+                    
+                </table>
             </div>
             
-            <!-- Tercera columna-->
-            <!--<div class="col-md-4" id="carrito">
-                <div class="card centrado">
-                    <h3>Carrito:</h3>
-                </div>
+            
+
+            
+
+
+             <table id="producto-carrito">
+                    
+                 <template id="template-carrito" class="col-md-4 card centrado">
+                    <tr>
+                            
+                            <td>ID</td>
+                            <td>Nombre</td>
+                            <td>Precio</td>
+                            <td>Cantidad</td>
+                    </tr>
+                </template>
+                    
+                    
+            </table>
                 
-            </div>-->
+                
+              
+            
+          
         </div>
     </div>
+
+
+    <template id="template-productos">
+          
+        <!-- Cards-->
+            <div class="col-md-4">
+                <div class="card centrado" >
+                    <img src="" class="card-img-top" >
+                    <div class="card-body">
+                      <h5 class="card-title">Nombre producto</h5>
+                      <p class="card-text">$ <span>Precio</span></p>
+                      <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+            
+            </div>
+    </template>
+
 
     <!--Footer-->
     <footer>

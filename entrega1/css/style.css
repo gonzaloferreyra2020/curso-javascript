@@ -9,6 +9,7 @@
 /* Centrado de los separadores */
 .centrado{
     text-align: center;
+    justify-content: space-around;
 }
 
 /* Texto del footer */
