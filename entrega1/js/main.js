@@ -128,7 +128,7 @@ const items = document.getElementById('items')
 
 const mostrarCarrito = () => {
     
-    //se eliminan los items repetidos
+    //se limpian los items
     items.innerHTML = ''
 
     //se crea template y fragment para luego agregarlos al html
@@ -156,7 +156,9 @@ const mostrarCarrito = () => {
 
 const templateFooter = document.getElementById('template-footer').content
 
+// para modificar el footer de la tabla
 const pintarFooter = () => {
+    //se limpia el footer
     footer.innerHTML = ''
     
     if (Object.keys(carrito).length === 0) {
@@ -165,23 +167,10 @@ const pintarFooter = () => {
         `
         return
     }
-        // sumar cantidad y sumar totales
-        // const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
-        // const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0)
-        // console.log(nPrecio)
-    
-        templateFooter.querySelectorAll('td')[0].textContent = nCantidad
-        templateFooter.querySelector('span').textContent = nPrecio
-    
-        const clone = templateFooter.cloneNode(true)
-        fragment.appendChild(clone)
-    
-        footer.appendChild(fragment)
     
         const boton = document.querySelector('#vaciar-carrito')
         boton.addEventListener('click', () => {
-            carrito = {}
-            mostrarCarrito()
+            carrito = []
         })
     
     }
