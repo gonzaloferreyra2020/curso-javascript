@@ -17,7 +17,22 @@
     color: rgb(255, 255, 255);
 }
 
+/* Estilos letras del carrito*/
+td {
+    text-decoration: underline;
+}
+.negrita{
+    text-transform:uppercase;
+    font-weight: bold;
+}
+
+.margin{
+    margin-bottom: 15px;
+}
+
 /*Margin para el footer */
 footer{
     margin-top: 25%;
 }
+
+

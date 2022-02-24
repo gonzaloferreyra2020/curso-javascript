@@ -29,71 +29,57 @@
 
     <div class="container">
 
-        <!---->
+        <!--Productos q estan en venta-->
         <div class="row pt-3" id="container-productos">
 
         </div>
         
-        
 
-
-        <div id="crearProducto" class="row pt-3">
-             <!-- Primer columna-->
-            <!--<div class="col-md-4">
-                <div class="card centrado">
-                    <h3>Ingresar producto:</h3>
-                </div>
-                <form id="formulario" class="card-body">
-                    <div class="form-group">
-                        <input type="text" id="nombre" placeholder="ingrese producto">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <input type="text" id="descrip" placeholder="ingrese descripcion">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <input type="number" id="precio" placeholder="ingrese precio">
-                    </div>
-                    <br>
-                    <input type="submit" value="Guardar" >
-                </form>
-                
-            </div>-->
-
-            <div class="col-md-4 card centrado" >
+            <!--tabla carrito q se muestra en pantalla-->
+            <div class="col-12 mb-2 card centrado" >
                 <h3>Carrito:</h3>
                 <table>
-                    
-                        <td>ID</td>
-                        <td>Nombre</td>
-                        <td>Precio</td>
-                        <td>Cantidad</td>
-                    
+                    <tr >
+                        <td class="negrita">ID</td>
+                        <td class="negrita">Nombre</td>
+                        <td class="negrita">Precio</td>
+                        <td class="negrita">Cantidad</td>
+                    </tr>
+                    <tbody id="items"></tbody>
+                    <tfoot>
+                        <tr id="footer">
+                          <th colspan="5">Carrito vacío - comience a comprar!</th>
+                        </tr>
+                      </tfoot>
                 </table>
             </div>
             
-            
-
-            
-
-
+            <!-- template de la tabla-->
              <table id="producto-carrito">
                     
-                 <template id="template-carrito" class="col-md-4 card centrado">
+                 <template id="template-carrito" class="columna card centrado">
                     <tr>
-                            
                             <td>ID</td>
                             <td>Nombre</td>
                             <td>Precio</td>
                             <td>Cantidad</td>
                     </tr>
+                   
                 </template>
-                    
-                    
+                            
             </table>
-                
-                
+
+              <!-- template de la tabla con boton vaciar-->   
+              <template id="template-footer">
+              <th scope="row" colspan="2">Total productos</th>
+              <td>10</td>
+              <td>
+                  <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+                      vaciar todo
+                  </button>
+              </td>
+              <td class="negrita">$ <span>5000</span></td>
+              </template>
               
             
           
@@ -103,7 +89,7 @@
 
     <template id="template-productos">
           
-        <!-- Cards-->
+        <!-- Cards bootstrap-->
             <div class="col-md-4">
                 <div class="card centrado" >
                     <img src="" class="card-img-top" >
@@ -122,7 +108,7 @@
     <footer>
         <div class="card-footer bg-dark" >
             <h4 class="texto-claro centrado">
-                Terminos y condiciones. Derechos reservados 2022.
+                Ferreyra Gonzalo. Derechos reservados 2022.
             </h4>
         </div>
     </footer>
