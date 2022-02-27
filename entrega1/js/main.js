@@ -47,6 +47,8 @@ document.getElementById("container-productos")
 
 //venta de productos(listado de productos a vender)
 
+
+
 //evento DOMContentLoaded
  document.addEventListener("DOMContentLoaded", () =>{
      fetchData()
@@ -160,6 +162,9 @@ const templateFooter = document.getElementById('template-footer').content
 const pintarFooter = () => {
     //se limpia el footer
     footer.innerHTML = ''
+
+    //libreria sweet alert
+    swal("Producto agregado al carrito!");
     
     if (Object.keys(carrito).length === 0) {
         footer.innerHTML = `
