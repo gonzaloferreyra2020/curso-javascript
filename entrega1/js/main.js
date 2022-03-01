@@ -164,7 +164,9 @@ const pintarFooter = () => {
     footer.innerHTML = ''
 
     //libreria sweet alert
-    swal("Producto agregado al carrito!");
+    swal("Producto agregado al carrito!", "", "success");
+
+
     
     if (Object.keys(carrito).length === 0) {
         footer.innerHTML = `
