@@ -129,10 +129,11 @@ const pintarFooter = () => {
         `
         return
     }
-    
-        const boton = document.querySelector('#vaciar-carrito')
+    else{
+        const boton = document.querySelectorAll('#vaciar-carrito')
         boton.addEventListener('click', () => {
             carrito = []
         })
     
+    }
     }

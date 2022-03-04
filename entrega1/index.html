@@ -14,10 +14,7 @@
     <title>Entrega1</title>
 </head>
 <body>
-   <!--<h1>Entrega1</h1>
-
-    <h2>Creacion de productos</h2>--> 
-
+   
     <!-- Navbar-->
     <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">
@@ -34,7 +31,6 @@
 
         </div>
         
-
             <!--tabla carrito q se muestra en pantalla-->
             <div class="col-12 mb-2 card centrado" >
                 <h3>Carrito:</h3>
@@ -54,9 +50,10 @@
                 </table>
             </div>
             
-            <!-- template de la tabla-->
+            
              <table id="producto-carrito">
-                    
+
+                 <!-- template de la tabla-->
                  <template id="template-carrito" class="columna card centrado">
                     <tr>
                             <td>ID</td>
@@ -69,24 +66,13 @@
                             
             </table>
 
-              <!-- template de la tabla con boton vaciar-->   
-              <template id="template-footer">
-              <th scope="row" colspan="2">Total productos</th>
-              <td>10</td>
-              <td>
-                  <button class="btn btn-danger btn-sm" id="vaciar-carrito">
-                      vaciar todo
-                  </button>
-              </td>
-              <td class="negrita">$ <span>5000</span></td>
-              </template>
               
-            
           
         </div>
     </div>
 
 
+    <!-- Template con los productos en venta-->
     <template id="template-productos">
           
         <!-- Cards bootstrap-->
@@ -103,6 +89,19 @@
             </div>
     </template>
 
+
+    <!-- template de la tabla con boton vaciar-->   
+    <template id="template-footer">
+        <th scope="row" colspan="2">Total productos</th>
+        <td>10</td>
+        <td>
+            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+                vaciar todo
+            </button>
+        </td>
+        <td class="negrita">$ <span>5000</span></td>
+    </template>
+        
 
     <!--Footer-->
     <footer>
