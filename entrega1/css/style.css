@@ -43,7 +43,10 @@ footer{
 
 /*Ajuste de las imagenes*/
 .card-img-top{
-    width: 420px;
-    height: 320px;
+   
     
+}
+
+.btn-danger{
+    text-align: center;
 }

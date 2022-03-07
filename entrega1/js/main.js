@@ -1,15 +1,13 @@
 
-
 //venta de productos(listado de productos a vender)
 
 
-
-//evento DOMContentLoaded
+//evento DOMContentLoaded (verifica q el DOM esta cargado correctamente)
  document.addEventListener("DOMContentLoaded", () =>{
      fetchData()
  })
 
- //busqueda de productos.js (array de objetos donde estan guardados los productos)
+//busqueda de productos.js (array de objetos donde estan guardados los productos)
 const fetchData = async () => {
     try{
         const res = await fetch('./js/productos.js')
@@ -54,11 +52,14 @@ const mostrarProductos = (data) => {
 }
 
 //objeto carrito
-const carrito={}
+let carrito={}
 
+//seleccion del boton comprar
 const seleccionarBotones = (data) => {
     const botones = document.querySelectorAll(".card button");
     //console.log(botones);
+
+    
 
     botones.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -70,9 +71,11 @@ const seleccionarBotones = (data) => {
                 producto.cantidad = carrito[producto.id].cantidad +1
                 
             }
-
+            //libreria sweet alert
+            swal("Producto agregado al carrito!", "", "success");
+            
             carrito[producto.id] = {...producto}
-            console.log(carrito);
+            //console.log(carrito);
             mostrarCarrito();
         
         })
@@ -95,11 +98,10 @@ const mostrarCarrito = () => {
     
    //se convierte el objecto en array para usar el foreach
     Object.values(carrito).forEach(producto => {
-        //console.log(Object.values(carrito))
-        //console.log(producto);
+        
         template.querySelectorAll("td")[0].textContent = producto.id
         template.querySelectorAll("td")[1].textContent = producto.title
-        template.querySelectorAll("td")[2].textContent = producto.precio*producto.cantidad
+        template.querySelectorAll("td")[2].textContent = "$"+producto.precio*producto.cantidad
         template.querySelectorAll("td")[3].textContent = producto.cantidad
 
         const clone = template.cloneNode(true);
@@ -111,29 +113,59 @@ const mostrarCarrito = () => {
 
 }
 
-const templateFooter = document.getElementById('template-footer').content
+const templateFooter = document.getElementById('footerTabla')
 
 // para modificar el footer de la tabla
 const pintarFooter = () => {
-    //se limpia el footer
-    footer.innerHTML = ''
-
-    //libreria sweet alert
-    swal("Producto agregado al carrito!", "", "success");
-
+    //se limpia el footer de la tabla
+    footerTabla.innerHTML = ''
 
     
-    if (Object.keys(carrito).length === 0) {
-        footer.innerHTML = `
-        <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
-        `
-        return
-    }
-    else{
-        const boton = document.querySelectorAll('#vaciar-carrito')
-        boton.addEventListener('click', () => {
-            carrito = []
-        })
+
+
+    //se crea template y fragment para luego agregarlos al html
+    const template = document.querySelector("#template-footer").content
+    const fragment = document.createDocumentFragment()
+
+    //mostrar precio total
+    const cantidadTotal = Object.values(carrito).reduce((a,{cantidad}) => a+cantidad,0)
+    const precioTotal = Object.values(carrito).reduce((acc,{cantidad,precio}) =>acc + cantidad*precio,0)
+
+    console.log("precio es",precioTotal);
+    template.querySelectorAll("td")[1].textContent = cantidadTotal
+    template.querySelector("span").textContent = precioTotal
     
-    }
+
+    const clone = template.cloneNode(true);
+    fragment.appendChild(clone);
+    
+    templateFooter.appendChild(fragment);
+
+    const botonVaciar = document.querySelector("#vaciar-carrito") 
+    botonVaciar.addEventListener("click",() =>{
+        carrito = {}
+        mostrarCarrito()
+    })
+
+
+    // if (Object.keys(carrito).length > 0) {
+    //     footer.innerHTML = ''
+    //     return
+    // }
+    // else{
+    //     footer.innerHTML = `
+    //     <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+    //             vaciar carrito
+    //         </button>
+    //     `
+    //     // const boton = document.querySelector('btn-danger')
+    //     // boton.addEventListener('click', () => {
+    //     // carrito = [];
+    //     // })
+    //     // console.log(boton);
+    // }
+    
+    
+    
+    
     }
