@@ -59,7 +59,6 @@ const seleccionarBotones = (data) => {
     const botones = document.querySelectorAll(".card button");
     //console.log(botones);
 
-    
 
     botones.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -73,7 +72,7 @@ const seleccionarBotones = (data) => {
             }
             //libreria sweet alert
             swal("Producto agregado al carrito!", "", "success");
-            
+
             carrito[producto.id] = {...producto}
             //console.log(carrito);
             mostrarCarrito();
@@ -120,8 +119,7 @@ const pintarFooter = () => {
     //se limpia el footer de la tabla
     footerTabla.innerHTML = ''
 
-    
-
+   
 
     //se crea template y fragment para luego agregarlos al html
     const template = document.querySelector("#template-footer").content
@@ -141,6 +139,7 @@ const pintarFooter = () => {
     
     templateFooter.appendChild(fragment);
 
+    //
     const botonVaciar = document.querySelector("#vaciar-carrito") 
     botonVaciar.addEventListener("click",() =>{
         carrito = {}
@@ -148,10 +147,7 @@ const pintarFooter = () => {
     })
 
 
-    // if (Object.keys(carrito).length > 0) {
-    //     footer.innerHTML = ''
-    //     return
-    // }
+   
     // else{
     //     footer.innerHTML = `
     //     <button class="btn btn-danger btn-sm" id="vaciar-carrito">
