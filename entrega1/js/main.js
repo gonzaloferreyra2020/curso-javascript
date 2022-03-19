@@ -145,22 +145,6 @@ const pintarFooter = () => {
         carrito = {}
         mostrarCarrito()
     })
-
-
-   
-    // else{
-    //     footer.innerHTML = `
-    //     <button class="btn btn-danger btn-sm" id="vaciar-carrito">
-    //             vaciar carrito
-    //         </button>
-    //     `
-    //     // const boton = document.querySelector('btn-danger')
-    //     // boton.addEventListener('click', () => {
-    //     // carrito = [];
-    //     // })
-    //     // console.log(boton);
-    // }
-    
     
     
     
