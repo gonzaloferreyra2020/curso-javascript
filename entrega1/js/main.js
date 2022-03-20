@@ -10,9 +10,9 @@
 //busqueda de productos.js (array de objetos donde estan guardados los productos)
 const fetchData = async () => {
     try{
-        const res = await fetch('./js/productos.js')
+        const res = await fetch('js/productos.js')
         const data = await res.json()
-        //console.log(data);
+        
         //agrega los productos al sitio
         mostrarProductos(data);
         seleccionarBotones(data);
@@ -32,15 +32,16 @@ const mostrarProductos = (data) => {
     const template = document.querySelector('#template-productos').content;
     const fragment = document.createDocumentFragment();
 
-    //console.log(template);
+    
 
     //agrega las imagenes, el titulo, precio y id por cada producto q itera
     data.forEach(producto => {
-        //console.log(producto);
+        
         template.querySelector("img").setAttribute("src",producto.thumbnailUrl)
         template.querySelector("h5").textContent = producto.title
         template.querySelector("p span").textContent = producto.precio
         template.querySelector("button").dataset.id = producto.id
+      
 
         //se crea un clone por cada template y se agrega al fragment
         const clone = template.cloneNode(true);
@@ -57,12 +58,12 @@ let carrito={}
 //seleccion del boton comprar
 const seleccionarBotones = (data) => {
     const botones = document.querySelectorAll(".card button");
-    //console.log(botones);
+    
 
 
     botones.forEach(btn => {
         btn.addEventListener("click", () => {
-            //console.log(btn.dataset.id);
+            
             const producto = data.find(item => item.id === parseInt( btn.dataset.id));
             producto.cantidad = 1
             //if para aumentar la cantidad
@@ -74,7 +75,7 @@ const seleccionarBotones = (data) => {
             swal("Producto agregado al carrito!", "", "success");
 
             carrito[producto.id] = {...producto}
-            //console.log(carrito);
+            
             mostrarCarrito();
         
         })
@@ -84,42 +85,57 @@ const seleccionarBotones = (data) => {
 const productoCarrito = document.querySelector("#producto-carrito");
 const items = document.getElementById('items')
 
-
+//funcion para mostrar el carrito con los productos seleccionados
 const mostrarCarrito = () => {
     
     //se limpian los items
     items.innerHTML = ''
 
     //se crea template y fragment para luego agregarlos al html
-    const template = document.querySelector("#template-carrito").content
+    const templateCarrito = document.querySelector("#template-carrito").content
     const fragment = document.createDocumentFragment()
 
     
    //se convierte el objecto en array para usar el foreach
     Object.values(carrito).forEach(producto => {
-        
-        template.querySelectorAll("td")[0].textContent = producto.id
-        template.querySelectorAll("td")[1].textContent = producto.title
-        template.querySelectorAll("td")[2].textContent = "$"+producto.precio*producto.cantidad
-        template.querySelectorAll("td")[3].textContent = producto.cantidad
+        //id del producto
+        templateCarrito.querySelectorAll("td")[0].textContent = producto.id
+        //nombre del producto
+        templateCarrito.querySelectorAll("td")[1].textContent = producto.nombre
+        //precio total del producto
+        templateCarrito.querySelectorAll("td")[2].textContent = "$"+producto.precio*producto.cantidad
+        //cantidad de productos seleccionados
+        templateCarrito.querySelectorAll("td")[3].textContent = producto.cantidad
+        //botones
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
+       
 
-        const clone = template.cloneNode(true);
+        const clone = templateCarrito.cloneNode(true);
         fragment.appendChild(clone)
     });
 
     items.appendChild(fragment);
-    pintarFooter()
+    mostrarFooter()
+   
 
 }
 
 const templateFooter = document.getElementById('footerTabla')
 
-// para modificar el footer de la tabla
-const pintarFooter = () => {
+
+// funcion para modificar el footer de la tabla
+const mostrarFooter = () => {
     //se limpia el footer de la tabla
     footerTabla.innerHTML = ''
 
-   
+    //si el carrito vuelve a cero se muestra el mensaje por inner HTML
+    if (Object.keys(carrito).length === 0) {
+        footerTabla.innerHTML = `
+        <th scope="row" colspan="5">Carrito vacío </th>
+        `
+        return
+    }
 
     //se crea template y fragment para luego agregarlos al html
     const template = document.querySelector("#template-footer").content
@@ -139,13 +155,45 @@ const pintarFooter = () => {
     
     templateFooter.appendChild(fragment);
 
-    //
+    // boton para vaciar el carrito
     const botonVaciar = document.querySelector("#vaciar-carrito") 
     botonVaciar.addEventListener("click",() =>{
         carrito = {}
         mostrarCarrito()
     })
+
+}
+
+//evento para que sume o reste los productos del carrito
+items.addEventListener('click', e => { btnAumentarDisminuir(e) })
+
+//funcion para aumentar o disminuir las cantidades
+const btnAumentarDisminuir = e => {
     
-    
-    
+    if (e.target.classList.contains('btn-info')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad++
+        carrito[e.target.dataset.id] = { ...producto }
+        mostrarCarrito()
     }
+
+    if (e.target.classList.contains('btn-danger')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad--
+        if (producto.cantidad === 0) {
+            delete carrito[e.target.dataset.id]
+        } else {
+            carrito[e.target.dataset.id] = {...producto}
+        }
+        mostrarCarrito()
+    }
+    e.stopPropagation()
+}
+
+
+
+    
+    
+    
+    
+    

@@ -34,7 +34,7 @@
             <!--tabla carrito q se muestra en pantalla-->
             <div class="col-12 mb-2 card centrado" >
                 <h3>Carrito:</h3>
-                <table>
+                <table id="producto-carrito">
                     <tr >
                         <td class="negrita">ID</td>
                         <td class="negrita">Nombre</td>
@@ -55,17 +55,7 @@
             
             
              <table id="producto-carrito">
-
-                 <!-- template de la tabla-->
-                 <template id="template-carrito" class="columna card centrado">
-                    <tr>
-                            <td>ID</td>
-                            <td>Nombre</td>
-                            <td>Precio</td>
-                            <td>Cantidad</td>
-                    </tr>
-                   
-                </template>
+               <!-- template de la tabla carrito-->
                             
             </table>
 
@@ -90,6 +80,26 @@
                 </div>
             
             </div>
+    </template>
+
+
+    <!-- template de la tabla carrito-->
+    <template id="template-carrito" class="columna card centrado">
+        <tr>
+                <td>ID</td>
+                <td>Nombre</td>
+                <td>Precio</td>
+                <td>Cantidad</td>
+                <td>
+                    <button class="btn btn-info btn-sm">
+                    +
+                    </button>
+                    <button class="btn btn-danger btn-sm">
+                    -
+                    </button>
+            </td>
+        </tr>
+        
     </template>
 
 
